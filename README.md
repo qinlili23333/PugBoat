@@ -1,0 +1,2 @@
+# PugBoat
+ Some magazine downloader
