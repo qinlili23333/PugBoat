@@ -13,5 +13,11 @@ namespace PugBoat
         {
             CurrentWindow = Window;
         }
+
+        // Open Dev Tools
+        public void OpenDevTools()
+        {
+            CurrentWindow.WebView.CoreWebView2.OpenDevToolsWindow();
+        }
     }
 }

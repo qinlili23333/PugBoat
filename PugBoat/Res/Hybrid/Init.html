@@ -4,7 +4,11 @@
 <body>
 
     <h1>Hello PugBoat</h1>
-
+    <script>
+        window.Bridge = chrome.webview.hostObjects.PugBoat;
+        window.BridgeSync = chrome.webview.hostObjects.sync.PugBoat;
+        BridgeSync.OpenDevTools();
+    </script>
 </body>
 
 </html>
