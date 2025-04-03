@@ -6,6 +6,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <AssemblyVersion></AssemblyVersion>
+    <FileVersion></FileVersion>
+    <VersionPrefix>1.0.0-DEV</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,4 +16,9 @@
     <PackageReference Include="PDFsharp" Version="6.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Res\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

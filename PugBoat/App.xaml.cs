@@ -29,7 +29,7 @@ namespace PugBoat
             }
             else
             {
-                var WebviewArgu = "--disable-features=msSmartScreenProtection,ElasticOverscroll --enable-features=msWebView2EnableDraggableRegions --in-process-gpu --disable-web-security --no-sandbox --single-process";
+                var WebviewArgu = "--disable-features=msSmartScreenProtection,ElasticOverscroll --enable-features=msWebView2EnableDraggableRegions --disable-web-security --no-sandbox";
                 CoreWebView2EnvironmentOptions options = new()
                 {
                     AdditionalBrowserArguments = WebviewArgu

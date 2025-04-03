@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:PugBoat"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="PugBoat.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="PugBoat" Height="450" Width="800">
     <Grid>
 
-        <Wpf:WebView2/>
+        <Wpf:WebView2 x:Name="WebView"/>
 
     </Grid>
 </Window>
