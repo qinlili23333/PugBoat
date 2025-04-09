@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+    </style>
+    <link href="starlight-loading.min.css" rel="stylesheet" />
+    <script src="starlight-loading.min.js"></script>
+</head>
+
 <body>
 
     <h1>Hello PugBoat</h1>
     <script>
+        starlightLoading.init(false);
         window.Bridge = chrome.webview.hostObjects.PugBoat;
         window.BridgeSync = chrome.webview.hostObjects.sync.PugBoat;
-        BridgeSync.OpenDevTools();
+        (async () => {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            starlightLoading.showPanel();
+            for (let i = 0; i < 11; i++) {
+                starlightLoading.setProgress(i * 10);
+                await new Promise(resolve => setTimeout(resolve, 150));
+            }
+            BridgeSync.OpenDevTools();
+            starlightLoading.hidePanel();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            starlightLoading.hide();
+        })();
     </script>
 </body>
 

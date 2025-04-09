@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PugBoat
 {
@@ -18,6 +19,18 @@ namespace PugBoat
         public void OpenDevTools()
         {
             CurrentWindow.WebView.CoreWebView2.OpenDevToolsWindow();
+        }
+
+        // Show Window
+        public void ShowWindow()
+        {
+            CurrentWindow.Visibility=System.Windows.Visibility.Visible;
+        }
+
+        // Hide Window
+        public void HideWindow()
+        {
+            CurrentWindow.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }
