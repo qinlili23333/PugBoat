@@ -21,4 +21,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PugBoatCore\PugBoatCore.csproj" />
+  </ItemGroup>
 </Project>
