@@ -21,12 +21,12 @@ namespace PugBoatCore
 
         static public Task<BoltSite> CreateFromDomain(string domain)
         {
-
+            return null;
         }
 
         static public Task<BoltSite> CreateFromJsonFile(string path)
         {
-
+            return null;
         }
 
         /// <summary>
