@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace PugBoat
+﻿namespace PugBoat
 {
     public class PugBoatBridge
     {
@@ -24,7 +17,7 @@ namespace PugBoat
         // Show Window
         public void ShowWindow()
         {
-            CurrentWindow.Visibility=System.Windows.Visibility.Visible;
+            CurrentWindow.Visibility = System.Windows.Visibility.Visible;
         }
 
         // Hide Window

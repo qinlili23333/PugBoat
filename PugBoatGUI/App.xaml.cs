@@ -1,6 +1,4 @@
 ﻿using Microsoft.Web.WebView2.Core;
-using System.Configuration;
-using System.Data;
 using System.IO;
 using System.Windows;
 
