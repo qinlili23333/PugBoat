@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-
-namespace PugBoatCore
+﻿namespace PugBoatCore
 {
     public class Core
     {
