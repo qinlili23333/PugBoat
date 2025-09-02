@@ -7,19 +7,41 @@ namespace PugBoatCore
     /// </summary>
     public class BoltSite
     {
+        /// <summary>
+        /// Timeline JSON document.
+        /// </summary>
         private JsonDocument JsonDoc;
+        /// <summary>
+        /// Issues found on the site.
+        /// </summary>
+        public BoltIssue[] Issues;
         /// <summary>
         /// Private constructor, use static methods to create instances.
         /// </summary>
         private BoltSite(JsonDocument Json)
         {
             JsonDoc = Json;
+            if (!IsValidSite())
+            {
+                throw new InvalidSiteException();
+            }
+            Issues = [.. JsonDoc.RootElement.GetProperty("timelines").EnumerateArray().Select(t => new BoltIssue(t))];
         }
 
-        public bool IsValidSite()
+        /// <summary>
+        /// Verify whether it's a valid site, in case the JSON is not a valid timeline JSON.
+        /// </summary>
+        /// <returns>whether is valid site</returns>
+        private bool IsValidSite()
         {
             return JsonDoc.RootElement.TryGetProperty("timelines", out var timelines) && timelines.GetArrayLength() > 0;
         }
+
+        /// <summary>
+        /// How many issues are on the site.
+        /// </summary>
+        public int IssueCount => Issues.Length;
+
 
 
         static public async Task<BoltSite?> CreateFromDomain(string domain)
