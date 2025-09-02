@@ -42,6 +42,14 @@ namespace PugBoatCore
         /// </summary>
         public int IssueCount => Issues.Length;
 
+        /// <summary>
+        /// Get the original JSON string.
+        /// </summary>
+        /// <returns></returns>
+        public string ExportJson()
+        {
+            return JsonDoc.RootElement.GetRawText();
+        }
 
 
         static public async Task<BoltSite?> CreateFromDomain(string domain)

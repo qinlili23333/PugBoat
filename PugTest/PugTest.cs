@@ -13,8 +13,9 @@ namespace PugTest
 
         static async Task TestPdfSite()
         {
-            var site = await PugBoatCore.BoltSite.CreateFromDomain("app.houseandgarden.co.uk");
-            Console.WriteLine("Found " + site?.IssueCount + " issues.");
+            var site = await PugBoatCore.BoltSite.CreateFromDomain("app-houseandgarden-co-uk".Replace('-','.'));
+            Console.WriteLine("Found " + site.IssueCount + " issues.");
+            Console.WriteLine("Original JSON:"+site.ExportJson());
         }
     }
 }
