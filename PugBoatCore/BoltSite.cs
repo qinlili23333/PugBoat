@@ -8,6 +8,10 @@ namespace PugBoatCore
     public class BoltSite
     {
         /// <summary>
+        /// Site domain
+        /// </summary>
+        public string Domain;
+        /// <summary>
         /// Timeline JSON document.
         /// </summary>
         private JsonDocument JsonDoc;
@@ -18,14 +22,15 @@ namespace PugBoatCore
         /// <summary>
         /// Private constructor, use static methods to create instances.
         /// </summary>
-        private BoltSite(JsonDocument Json)
+        private BoltSite(string domain, JsonDocument Json)
         {
+            Domain = domain;
             JsonDoc = Json;
             if (!IsValidSite())
             {
                 throw new InvalidSiteException();
             }
-            Issues = [.. JsonDoc.RootElement.GetProperty("timelines").EnumerateArray().Select(t => new BoltIssue(t))];
+            Issues = [.. JsonDoc.RootElement.GetProperty("timelines").EnumerateArray().Select(t => new BoltIssue(this, t))];
         }
 
         /// <summary>
@@ -57,7 +62,7 @@ namespace PugBoatCore
             try
             {
                 var Jsondoc = await Util.Network.GetJsonFromUrl($"https://{domain}/timelines.json");
-                return new BoltSite(Jsondoc);
+                return new BoltSite(domain, Jsondoc);
             }
             catch (Exception)
             {
@@ -65,13 +70,13 @@ namespace PugBoatCore
             }
         }
 
-        static public async Task<BoltSite?> CreateFromJsonFile(string path)
+        static public async Task<BoltSite?> CreateFromCachedJsonFileWithDomain(string domain, string path)
         {
             try
             {
                 using var stream = File.OpenRead(path);
                 var Jsondoc = await JsonDocument.ParseAsync(stream);
-                return new BoltSite(Jsondoc);
+                return new BoltSite(domain, Jsondoc);
             }
             catch (Exception)
             {
@@ -84,9 +89,9 @@ namespace PugBoatCore
         /// </summary>
         /// <param name="json">JSON string</param>
         /// <returns>BoltSite object</returns>
-        static public BoltSite CreateFromJsonString(string json)
+        static public BoltSite CreateFromJsonStringWithDomain(string domain, string json)
         {
-            return new BoltSite(JsonDocument.Parse(json));
+            return new BoltSite(domain, JsonDocument.Parse(json));
         }
     }
 }
