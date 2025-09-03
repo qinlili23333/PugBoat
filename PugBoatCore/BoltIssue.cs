@@ -31,14 +31,5 @@ namespace PugBoatCore
             TimelineJson = timelineJson;
             ManifestUrl = timelineJson.GetProperty("feed").GetString();
         }
-
-        /// <summary>
-        /// Initialize with manifest URL
-        /// </summary>
-        /// <param name="manifestUrl">Issue manifest url</param>
-        public BoltIssue(string manifestUrl)
-        {
-            ManifestUrl = manifestUrl;
-        } 
     }
 }
