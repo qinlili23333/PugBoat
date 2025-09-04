@@ -91,5 +91,23 @@ namespace PugBoatCore
             }
             PDF = true;
         }
+
+        /// <summary>
+        /// Get all PDF URLs, throws if manifest not fetched or PDF not available
+        /// </summary>
+        /// <returns>PDF URLs in array</returns>
+        /// <exception cref="InvalidOperationException">manifest not fetched or PDF not available</exception>
+        public string[] GetPDF()
+        {
+            if (!Fetched)
+            {
+                throw new InvalidOperationException("Manifest not fetched");
+            }
+            if (!PDF)
+            {
+                throw new InvalidOperationException("PDF not available");
+            }
+            return [.. ManifestDoc.RootElement.GetProperty("stories").EnumerateArray().Select(p => Util.Network.ComposeRelativeUrl(ManifestUrl,p.GetProperty("pdf_url").GetString()))];
+        }
     }
 }
