@@ -70,5 +70,31 @@ namespace PugBoatCore.Util
                 throw new ArgumentException("Invalid base URL", nameof(baseUrl));
             }
         }
+
+        /// <summary>
+        /// Send HEAD requests to all URLs to preheat CDN connections.
+        /// </summary>
+        /// <param name="urls">url list</param>
+        public async static Task Preheat(string[] urls)
+        {
+            await Parallel.ForEachAsync(urls, async (url, token) =>
+            {
+                try
+                {
+                    using HttpClient client = new();
+                    {
+                        client.DefaultRequestHeaders.UserAgent.Clear();
+                        client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36");
+                        // Send HEAD request
+                        var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Head, url), token);
+                    }
+                }
+                catch (Exception)
+                {
+                    // Ignore all errors
+                }
+            });
+        }
     }
+
 }
